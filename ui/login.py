@@ -79,9 +79,9 @@ class LoginScreen:
 
     def attempt_login(self):
         user = self.user_entry.get().strip()
-        password = self.password_entry.get().strip()
+        passwrd = self.password_entry.get().strip()
 
-        if not user or not password:
+        if not user or not passwrd:
             messagebox.showwarning("Missing fields", "Please enter both username and password.")
             return
 
@@ -91,12 +91,34 @@ class LoginScreen:
         user = cursor.fetchone()
         conn.close()
 
-        if user and bcrypt.checkpw(password.encode('utf-8'), user['password_hash'].encode('utf-8')):
+        if user and bcrypt.checkpw(passwrd.encode('utf-8'), user['password_hash'].encode('utf-8')):
             self.login_success(dict(user))
         else:
             messagebox.showerror("Login failed", "Invalid username or password.")
             self.password_entry.delete(0, tk.END)
 
     def login_success(self, user):
-        messagebox.showinfo("Success", f"Welcome, {user['username']}!\nRole: {user['role']}")
-        # Dashboard routing will go here next
+        self.root.destroy()
+        root = tk.Tk()
+        role = user['role']
+
+        if role == 'ADMIN':
+            from ui.admin_dashboard import AdminDashboard
+            AdminDashboard(root, user)
+        elif role == 'MANAGER':
+            from ui.manager_dashboard import ManagerDashboard
+            ManagerDashboard(root, user)
+        elif role == 'FRONTDESK':
+            from ui.frontdesk_dashboard import FrontDeskDashboard
+            FrontDeskDashboard(root, user)
+        elif role == 'FINANCE':
+            from ui.finance_dashboard import FinanceDashboard
+            FinanceDashboard(root, user)
+        elif role == 'MAINTENANCE':
+            from ui.maintenance_dashboard import MaintenanceDashboard
+            MaintenanceDashboard(root, user)
+        elif role == 'TENANT':
+            from ui.tenant_dashboard import TenantDashboard
+            TenantDashboard(root, user)
+
+        root.mainloop()
