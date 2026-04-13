@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Campb\Desktop\ASD\venv"
+VIRTUAL_ENV="C:\Users\Campb\Desktop\ASD\PAMS-ASD-Group30\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
