@@ -8,6 +8,7 @@ NAV = [
     ("Overview", "show_overview"),
     ("Register Tenant", "show_register_tenant"),
     ("Tenant Lookup", "show_tenant_lookup"),
+    ("Lease Assignment", "show_lease_assignment"),
     ("Maintenance Requests", "show_maintenance"),
     ("Complaints", "show_complaints"),
 ]
@@ -29,3 +30,7 @@ class FrontDeskDashboard(BaseDashboard):
 
     def show_complaints(self):
         self.show_coming_soon("Complaints")
+
+    def show_lease_assignment(self):
+        from ui.modules.lease_assignment import LeaseAssignmentModule
+        LeaseAssignmentModule(self.page_frame).pack(fill="both", expand=True)

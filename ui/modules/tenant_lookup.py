@@ -1,6 +1,6 @@
 # ui/modules/tenant_lookup.py
 # Tenant Lookup Module
-# Student ID: [Your ID] - Campbell [Surname]
+# Student ID: 23029574 | Campbell Clark
 # Group 30 - PAMS
 
 import tkinter as tk
