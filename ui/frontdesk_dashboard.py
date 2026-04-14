@@ -17,7 +17,8 @@ class FrontDeskDashboard(BaseDashboard):
         super().__init__(root, user, NAV)
 
     def show_register_tenant(self):
-        self.show_coming_soon("Register Tenant")
+        from ui.modules.register_tenant import RegisterTenantModule
+        RegisterTenantModule(self.page_frame).pack(fill="both", expand=True)
 
     def show_tenant_lookup(self):
         self.show_coming_soon("Tenant Lookup")
