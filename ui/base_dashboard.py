@@ -1,6 +1,6 @@
 # ui/base_dashboard.py
 # Shared dashboard layout - Group 30
-
+# Student ID: 23029574 | Campbell Clark
 import tkinter as tk
 from tkinter import messagebox
 

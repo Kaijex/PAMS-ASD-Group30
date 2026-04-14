@@ -1,7 +1,7 @@
 # database/db.py
 # Database connection and initialisation
 # Group 30 - PAMS
-
+# Student ID: 23029574 | Campbell Clark
 import sqlite3
 import os
 import bcrypt

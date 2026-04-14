@@ -1,6 +1,6 @@
 # ui/admin_dashboard.py
 # Admin Dashboard - Group 30
-
+# Student ID: 23029574 | Campbell Clark
 import tkinter as tk
 from ui.base_dashboard import BaseDashboard, CONTENT_BG
 
@@ -20,7 +20,8 @@ class AdminDashboard(BaseDashboard):
         self.show_coming_soon("Manage Users")
 
     def show_manage_apartments(self):
-        self.show_coming_soon("Manage Apartments")
+        from ui.modules.apartments import ApartmentsModule
+        ApartmentsModule(self.page_frame).pack(fill="both", expand=True)
 
     def show_lease_tracker(self):
         self.show_coming_soon("Lease Tracker")
