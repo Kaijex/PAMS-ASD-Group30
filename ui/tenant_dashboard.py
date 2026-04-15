@@ -29,7 +29,9 @@ class TenantDashboard(BaseDashboard):
                       mode="tenant").pack(fill="both", expand=True)
 
     def show_complaints(self):
-        self.show_coming_soon("Complaints")
+        from ui.modules.complaints import ComplaintsModule
+        ComplaintsModule(self.page_frame, user=self.user,
+                     mode="tenant").pack(fill="both", expand=True)
 
     def show_termination(self):
         self.show_coming_soon("Early Termination")

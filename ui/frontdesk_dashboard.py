@@ -31,7 +31,9 @@ class FrontDeskDashboard(BaseDashboard):
                       mode="staff").pack(fill="both", expand=True)
 
     def show_complaints(self):
-        self.show_coming_soon("Complaints")
+        from ui.modules.complaints import ComplaintsModule
+        ComplaintsModule(self.page_frame, user=self.user,
+                     mode="staff").pack(fill="both", expand=True)
 
     def show_lease_assignment(self):
         from ui.modules.lease_assignment import LeaseAssignmentModule
