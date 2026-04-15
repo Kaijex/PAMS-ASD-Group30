@@ -15,6 +15,11 @@ NAV = [
 class AdminDashboard(BaseDashboard):
     def __init__(self, root, user):
         super().__init__(root, user, NAV)
+        
+    def show_overview(self):
+        from ui.modules.overview import OverviewModule
+        OverviewModule(self.page_frame, user=self.user,
+                       role="ADMIN").pack(fill="both", expand=True)
 
     def show_manage_users(self):
         self.show_coming_soon("Manage Users")

@@ -16,6 +16,11 @@ NAV = [
 class FrontDeskDashboard(BaseDashboard):
     def __init__(self, root, user):
         super().__init__(root, user, NAV)
+        
+    def show_overview(self):
+        from ui.modules.overview import OverviewModule
+        OverviewModule(self.page_frame, user=self.user,
+                       role="FRONTDESK").pack(fill="both", expand=True)
 
     def show_register_tenant(self):
         from ui.modules.register_tenant import RegisterTenantModule

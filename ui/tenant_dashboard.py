@@ -16,12 +16,21 @@ NAV = [
 class TenantDashboard(BaseDashboard):
     def __init__(self, root, user):
         super().__init__(root, user, NAV)
+    
+    def show_overview(self):
+        from ui.modules.overview import OverviewModule
+        OverviewModule(self.page_frame, user=self.user,
+                       role="TENANT").pack(fill="both", expand=True)
 
     def show_lease(self):
-        self.show_coming_soon("My Lease")
+        from ui.modules.my_lease import MyLeaseModule
+        MyLeaseModule(self.page_frame, user=self.user,
+                      mode="tenant").pack(fill="both", expand=True)
 
     def show_payments(self):
-        self.show_coming_soon("Payments")
+        from ui.modules.my_payments import MyPaymentsModule
+        MyPaymentsModule(self.page_frame, user=self.user,
+                         mode="tenant").pack(fill="both", expand=True)
 
     def show_maintenance(self):
         from ui.modules.maintenance import MaintenanceModule
