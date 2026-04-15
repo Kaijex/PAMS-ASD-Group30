@@ -17,13 +17,16 @@ class FinanceDashboard(BaseDashboard):
         super().__init__(root, user, NAV)
 
     def show_invoices(self):
-        self.show_coming_soon("Invoices")
+        from ui.modules.payments import PaymentsModule
+        PaymentsModule(self.page_frame).pack(fill="both", expand=True)
 
     def show_payments(self):
-        self.show_coming_soon("Payments")
+        from ui.modules.payments import PaymentsModule
+        PaymentsModule(self.page_frame).pack(fill="both", expand=True)
 
     def show_late_payments(self):
-        self.show_coming_soon("Late Payments")
+        from ui.modules.payments import PaymentsModule
+        PaymentsModule(self.page_frame).pack(fill="both", expand=True)
 
     def show_reports(self):
         self.show_coming_soon("Financial Reports")

@@ -26,7 +26,9 @@ class FrontDeskDashboard(BaseDashboard):
         TenantLookupModule(self.page_frame).pack(fill="both", expand=True)
 
     def show_maintenance(self):
-        self.show_coming_soon("Maintenance Requests")
+        from ui.modules.maintenance import MaintenanceModule
+        MaintenanceModule(self.page_frame, user=self.user,
+                      mode="staff").pack(fill="both", expand=True)
 
     def show_complaints(self):
         self.show_coming_soon("Complaints")

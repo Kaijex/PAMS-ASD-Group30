@@ -24,7 +24,9 @@ class TenantDashboard(BaseDashboard):
         self.show_coming_soon("Payments")
 
     def show_maintenance(self):
-        self.show_coming_soon("Maintenance Requests")
+        from ui.modules.maintenance import MaintenanceModule
+        MaintenanceModule(self.page_frame, user=self.user,
+                      mode="tenant").pack(fill="both", expand=True)
 
     def show_complaints(self):
         self.show_coming_soon("Complaints")

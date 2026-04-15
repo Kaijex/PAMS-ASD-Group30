@@ -16,10 +16,16 @@ class MaintenanceDashboard(BaseDashboard):
         super().__init__(root, user, NAV)
 
     def show_open_requests(self):
-        self.show_coming_soon("Open Requests")
+        from ui.modules.maintenance import MaintenanceModule
+        MaintenanceModule(self.page_frame, user=self.user,
+                         mode="staff").pack(fill="both", expand=True)
 
     def show_assigned(self):
-        self.show_coming_soon("My Assigned Jobs")
+        from ui.modules.maintenance import MaintenanceModule
+        MaintenanceModule(self.page_frame, user=self.user,
+                        mode="staff").pack(fill="both", expand=True)
 
     def show_resolved(self):
-        self.show_coming_soon("Resolved Requests")
+        from ui.modules.maintenance import MaintenanceModule
+        MaintenanceModule(self.page_frame, user=self.user,
+                        mode="staff").pack(fill="both", expand=True)
