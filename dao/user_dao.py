@@ -71,6 +71,13 @@ class UserDAO:
         conn.commit()
         conn.close()
 
+    def reactivate(self, user_id):
+        conn = get_connection()
+        cursor = conn.cursor()
+        cursor.execute("UPDATE users SET is_active = 1 WHERE user_id = ?", (user_id,))
+        conn.commit()
+        conn.close()
+
     def update(self, user_id, email, role, location):
         conn = get_connection()
         cursor = conn.cursor()

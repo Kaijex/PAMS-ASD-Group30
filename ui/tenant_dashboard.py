@@ -43,4 +43,5 @@ class TenantDashboard(BaseDashboard):
                      mode="tenant").pack(fill="both", expand=True)
 
     def show_termination(self):
-        self.show_coming_soon("Early Termination")
+        from ui.modules.early_termination import EarlyTerminationModule
+        EarlyTerminationModule(self.page_frame, user=self.user).pack(fill="both", expand=True)

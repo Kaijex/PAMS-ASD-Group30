@@ -22,7 +22,8 @@ class AdminDashboard(BaseDashboard):
                        role="ADMIN").pack(fill="both", expand=True)
 
     def show_manage_users(self):
-        self.show_coming_soon("Manage Users")
+        from ui.modules.manage_users import ManageUsersModule
+        ManageUsersModule(self.page_frame, user=self.user).pack(fill="both", expand=True)
 
     def show_manage_apartments(self):
         from ui.modules.apartments import ApartmentsModule
