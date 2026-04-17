@@ -32,4 +32,6 @@ class AdminDashboard(BaseDashboard):
         self.show_coming_soon("Lease Tracker")
 
     def show_reports(self):
-        self.show_coming_soon("Reports")
+        from ui.modules.reports import ReportsModule
+        ReportsModule(self.page_frame, user=self.user,
+                      role="ADMIN").pack(fill="both", expand=True)

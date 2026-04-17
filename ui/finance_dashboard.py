@@ -34,4 +34,6 @@ class FinanceDashboard(BaseDashboard):
         PaymentsModule(self.page_frame).pack(fill="both", expand=True)
 
     def show_reports(self):
-        self.show_coming_soon("Financial Reports")
+        from ui.modules.reports import ReportsModule
+        ReportsModule(self.page_frame, user=self.user,
+                      role="FINANCE").pack(fill="both", expand=True)

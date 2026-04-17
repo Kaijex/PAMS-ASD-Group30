@@ -24,7 +24,9 @@ class ManagerDashboard(BaseDashboard):
         self.show_coming_soon("Occupancy Levels")
 
     def show_reports(self):
-        self.show_coming_soon("Performance Reports")
+        from ui.modules.reports import ReportsModule
+        ReportsModule(self.page_frame, user=self.user,
+                      role="MANAGER").pack(fill="both", expand=True)
 
     def show_expand(self):
         self.show_coming_soon("Expand Business")
