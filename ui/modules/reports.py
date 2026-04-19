@@ -1,8 +1,9 @@
 # ui/modules/reports.py
 # Reports Module - Occupancy, financial and maintenance reports
 # Student ID: 23029574 | Campbell Clark
+# Student ID: 25013991 | Adjeneg Imed
 # Group 30 - PAMS
-# UI refinement by Student ID: 25013991 | Adjeneg Imed
+
 
 import tkinter as tk
 from tkinter import ttk

@@ -1,6 +1,7 @@
 # dao/apartment_dao.py
 # Apartment data access - Group 30
 # Student ID: 23029574 | Campbell Clark
+# Student ID: 25013991 | Adjeneg Imed
 import sys, os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from database.db import get_connection

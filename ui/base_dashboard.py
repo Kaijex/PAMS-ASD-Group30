@@ -1,12 +1,18 @@
 # ui/base_dashboard.py
+# Shared dashboard layout - Group 30
+# Student ID: 23029574 | Campbell Clark
+# Student ID: 25013991 | Adjeneg Imed
+
 import tkinter as tk
 from tkinter import messagebox, ttk
 
-SIDEBAR_BG = "#0F172A"
+SIDEBAR_BG = "#071224"
+SIDEBAR_PANEL = "#0D1B34"
 SIDEBAR_WIDTH = 240
+
 HEADER_BG = "#FFFFFF"
 CONTENT_BG = "#F8FAFC"
-CARD_BG = "#FFFFFF"
+WHITE = "#FFFFFF"
 
 PRIMARY = "#2563EB"
 PRIMARY_HOVER = "#1D4ED8"
@@ -16,6 +22,7 @@ TEXT_LIGHT = "#CBD5E1"
 BORDER = "#E2E8F0"
 LOGOUT = "#DC2626"
 AVATAR_BG = "#3B82F6"
+
 
 class BaseDashboard:
     def __init__(self, root, user, nav_items):
@@ -36,7 +43,7 @@ class BaseDashboard:
         style = ttk.Style()
         try:
             style.theme_use("clam")
-        except:
+        except Exception:
             pass
 
         style.configure(
@@ -64,119 +71,121 @@ class BaseDashboard:
             foreground=[("selected", TEXT_DARK)]
         )
 
-        style.map(
-            "Treeview.Heading",
-            background=[("active", "#DCEAFE")]
-        )
-
     def build_layout(self):
         self.sidebar = tk.Frame(self.root, bg=SIDEBAR_BG, width=SIDEBAR_WIDTH)
         self.sidebar.pack(side="left", fill="y")
         self.sidebar.pack_propagate(False)
 
-        logo_frame = tk.Frame(self.sidebar, bg=SIDEBAR_BG, height=88)
-        logo_frame.pack(fill="x", padx=18, pady=(18, 10))
-        logo_frame.pack_propagate(False)
+        top = tk.Frame(self.sidebar, bg=SIDEBAR_BG)
+        top.pack(fill="x", padx=18, pady=(22, 12))
 
         tk.Label(
-            logo_frame,
+            top,
             text="PAMS",
-            font=("Helvetica", 22, "bold"),
+            font=("Helvetica", 24, "bold"),
             bg=SIDEBAR_BG,
-            fg="white"
-        ).pack(anchor="w", pady=(8, 0))
+            fg=WHITE
+        ).pack(anchor="w")
 
         tk.Label(
-            logo_frame,
+            top,
             text="Apartment Management",
             font=("Helvetica", 10),
             bg=SIDEBAR_BG,
             fg=TEXT_LIGHT
-        ).pack(anchor="w", pady=(4, 0))
+        ).pack(anchor="w", pady=(6, 0))
 
-        user_frame = tk.Frame(self.sidebar, bg="#111C34", padx=14, pady=14)
-        user_frame.pack(fill="x", padx=16, pady=(4, 16))
+        user_card = tk.Frame(
+            self.sidebar,
+            bg=SIDEBAR_PANEL,
+            padx=18,
+            pady=18
+        )
+        user_card.pack(fill="x", padx=16, pady=(8, 18))
 
         initials = self.user["username"][:2].upper()
         tk.Label(
-            user_frame,
+            user_card,
             text=initials,
-            font=("Helvetica", 13, "bold"),
+            font=("Helvetica", 14, "bold"),
             bg=AVATAR_BG,
-            fg="white",
+            fg=WHITE,
             width=3,
             height=1
         ).pack(anchor="w")
 
         tk.Label(
-            user_frame,
+            user_card,
             text=self.user["username"],
-            font=("Helvetica", 11, "bold"),
-            bg="#111C34",
-            fg="white"
-        ).pack(anchor="w", pady=(10, 2))
+            font=("Helvetica", 12, "bold"),
+            bg=SIDEBAR_PANEL,
+            fg=WHITE
+        ).pack(anchor="w", pady=(12, 3))
 
         tk.Label(
-            user_frame,
+            user_card,
             text=self.user["role"].title(),
-            font=("Helvetica", 9),
-            bg="#111C34",
+            font=("Helvetica", 10),
+            bg=SIDEBAR_PANEL,
             fg=TEXT_LIGHT
         ).pack(anchor="w")
 
         if self.user.get("location"):
             tk.Label(
-                user_frame,
+                user_card,
                 text=self.user["location"],
-                font=("Helvetica", 9),
-                bg="#111C34",
+                font=("Helvetica", 10),
+                bg=SIDEBAR_PANEL,
                 fg=TEXT_MUTED
-            ).pack(anchor="w", pady=(2, 0))
+            ).pack(anchor="w", pady=(4, 0))
 
         self.nav_frame = tk.Frame(self.sidebar, bg=SIDEBAR_BG)
-        self.nav_frame.pack(fill="both", expand=True, padx=12)
+        self.nav_frame.pack(fill="both", expand=True, padx=14)
 
         for label, command_name in self.nav_items:
-            btn = tk.Button(
+            item = tk.Label(
                 self.nav_frame,
-                text=f"  {label}",
-                font=("Helvetica", 10, "bold"),
+                text=label,
+                font=("Helvetica", 11, "bold"),
                 bg=SIDEBAR_BG,
                 fg=TEXT_LIGHT,
-                relief="flat",
                 anchor="w",
-                cursor="hand2",
-                bd=0,
-                padx=14,
-                pady=12,
-                activebackground=PRIMARY,
-                activeforeground="white",
-                command=lambda cn=command_name: self.navigate(cn)
+                padx=16,
+                pady=14,
+                cursor="hand2"
             )
-            btn.pack(fill="x", pady=4)
-            self.nav_buttons[command_name] = btn
+            item.pack(fill="x", pady=5)
+            item.bind("<Button-1>", lambda e, cn=command_name: self.navigate(cn))
+            item.bind("<Enter>", lambda e, w=item, cn=command_name: self.on_nav_hover(w, cn))
+            item.bind("<Leave>", lambda e, w=item, cn=command_name: self.on_nav_leave(w, cn))
+            self.nav_buttons[command_name] = item
 
-        tk.Button(
+        logout_label = tk.Label(
             self.sidebar,
-            text="  Logout",
-            font=("Helvetica", 10, "bold"),
+            text="Logout",
+            font=("Helvetica", 11, "bold"),
             bg=SIDEBAR_BG,
             fg="#FCA5A5",
-            relief="flat",
             anchor="w",
-            cursor="hand2",
-            bd=0,
-            padx=14,
-            pady=12,
-            activebackground=LOGOUT,
-            activeforeground="white",
-            command=self.logout
-        ).pack(fill="x", padx=12, pady=14)
+            padx=16,
+            pady=14,
+            cursor="hand2"
+        )
+        logout_label.pack(fill="x", padx=14, pady=16)
+        logout_label.bind("<Button-1>", lambda e: self.logout())
+        logout_label.bind("<Enter>", lambda e: logout_label.configure(bg="#3A1010", fg=WHITE))
+        logout_label.bind("<Leave>", lambda e: logout_label.configure(bg=SIDEBAR_BG, fg="#FCA5A5"))
 
         self.content_area = tk.Frame(self.root, bg=CONTENT_BG)
         self.content_area.pack(side="right", fill="both", expand=True)
 
-        header = tk.Frame(self.content_area, bg=HEADER_BG, height=74, highlightbackground=BORDER, highlightthickness=1)
+        header = tk.Frame(
+            self.content_area,
+            bg=HEADER_BG,
+            height=72,
+            highlightbackground=BORDER,
+            highlightthickness=1
+        )
         header.pack(fill="x")
         header.pack_propagate(False)
 
@@ -195,12 +204,24 @@ class BaseDashboard:
         if self.nav_items:
             self.navigate(self.nav_items[0][1])
 
+    def on_nav_hover(self, widget, command_name):
+        active = getattr(self, "active_command", None)
+        if command_name != active:
+            widget.configure(bg="#102444", fg=WHITE)
+
+    def on_nav_leave(self, widget, command_name):
+        active = getattr(self, "active_command", None)
+        if command_name != active:
+            widget.configure(bg=SIDEBAR_BG, fg=TEXT_LIGHT)
+
     def navigate(self, command_name):
-        for name, btn in self.nav_buttons.items():
+        self.active_command = command_name
+
+        for name, widget in self.nav_buttons.items():
             if name == command_name:
-                btn.configure(bg=PRIMARY, fg="white")
+                widget.configure(bg=PRIMARY, fg=WHITE)
             else:
-                btn.configure(bg=SIDEBAR_BG, fg=TEXT_LIGHT)
+                widget.configure(bg=SIDEBAR_BG, fg=TEXT_LIGHT)
 
         for widget in self.page_frame.winfo_children():
             widget.destroy()

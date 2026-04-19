@@ -1,8 +1,9 @@
 # ui/modules/overview.py
 # Overview Module - Live stats home screen for all roles
 # Student ID: 23029574 | Campbell Clark
+# Student ID: 25013991 | Adjeneg Imed
 # Group 30 - PAMS
-# UI refinement by Student ID: 25013991 | Adjeneg Imed
+
 
 import tkinter as tk
 from tkinter import ttk

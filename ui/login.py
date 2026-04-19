@@ -1,7 +1,7 @@
 # ui/login.py
 # PAMS Login Screen - Group 30
 # Student ID: 23029574 | Campbell Clark
-# UI refinement by Student ID: 25013991 | Adjeneg Imed
+# Student ID: 25013991 | Adjeneg Imed
 
 import tkinter as tk
 from tkinter import messagebox
