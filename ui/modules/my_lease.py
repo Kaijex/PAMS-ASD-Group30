@@ -1,6 +1,7 @@
 # ui/modules/my_lease.py
 # My Lease Module - Tenant view of their lease details
 # Student ID: 23029574 | Campbell Clark
+# Student ID: 25013991 | Adjeneg Imed
 # Group 30 - PAMS
 
 import tkinter as tk

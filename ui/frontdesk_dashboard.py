@@ -1,6 +1,7 @@
 # ui/frontdesk_dashboard.py
 # Front Desk Dashboard - Group 30
 # Student ID: 23029574 | Campbell Clark
+# Student ID: 25013991 | Adjeneg Imed
 import tkinter as tk
 from ui.base_dashboard import BaseDashboard, CONTENT_BG
 

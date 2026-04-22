@@ -1,6 +1,7 @@
 # ui/modules/register_tenant.py
 # Tenant Registration Module
 # Student ID: 23029574 | Campbell Clark
+# Student ID: 25013991 | Adjeneg Imed
 # Group 30 - PAMS
 
 import tkinter as tk
