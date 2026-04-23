@@ -1,6 +1,7 @@
 # main.py
 # PAMS - Paragon Apartment Management System
-# Group 30 - Entry point
+# Student ID: 23029574 | Campbell Clark
+# Student ID: 25013991 | Adjeneg Imed
 import tkinter as tk
 from database.db import initialise_db
 from ui.login import LoginScreen
